@@ -1,0 +1,35 @@
+CREATE TABLE employee (
+    empid INT PRIMARY KEY,
+    name VARCHAR(50),
+    address VARCHAR(100),
+    department INT,
+    designation VARCHAR(50),
+    salary DECIMAL(10,2)
+);
+
+CREATE TABLE department (
+    dept_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    head_id INT
+);
+
+INSERT INTO department (dept_id, name, head_id) VALUES
+(1, 'HR', 1),
+(2, 'IT', 2),
+(3, 'Sales', 3);
+
+INSERT INTO employee (empid, name, address, department, designation, salary) VALUES
+(1, 'Anas Khan', '123 Main St', 1, 'Manager', 100000),
+(2, 'Ronaldo', '456 Oak St', 2, 'Software Engineer', 80000),
+(3, 'Messi', '789 Pine St', 3, 'Sales Manager', 120000),
+(4, 'Neymar', '101 Maple St', 1, 'HR Specialist', 70000);
+
+
+a) SELECT * FROM employee WHERE salary = (SELECT MAX(salary) FROM employee);
+
+
+b) SELECT name FROM employee WHERE salary > 100000;
+
+c)  SELECT e.name FROM employee e
+JOIN department d ON e.department = d.dept_id
+WHERE d.head_id = 3;
